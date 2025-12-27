@@ -4,7 +4,7 @@
   "description": "AI-powered assistant for Indian cultural navigation",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
+    "build": "npm install && tsc",
     "start": "node dist/server.js",
     "dev": "ts-node src/server.ts"
   },
