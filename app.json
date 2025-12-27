@@ -1,0 +1,46 @@
+{
+  "name": "Indian Local Guide API",
+  "description": "AI-powered assistant for navigating India's cultural diversity, slang, and street food",
+  "repository": "https://github.com/your-username/indian-local-guide",
+  "logo": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IN.svg",
+  "keywords": ["india", "culture", "food", "slang", "travel", "api", "nodejs", "express"],
+  "image": "heroku/nodejs",
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "DATABASE_PATH": {
+      "description": "Path to SQLite database file",
+      "value": "./data/indian-local-guide.db"
+    },
+    "CORS_ORIGIN": {
+      "description": "CORS allowed origins",
+      "value": "*"
+    },
+    "RATE_LIMIT_WINDOW_MS": {
+      "description": "Rate limit window in milliseconds",
+      "value": "900000"
+    },
+    "RATE_LIMIT_MAX": {
+      "description": "Maximum requests per window",
+      "value": "100"
+    }
+  },
+  "scripts": {
+    "postdeploy": "npm run build"
+  },
+  "addons": []
+}
