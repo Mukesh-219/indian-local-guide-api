@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇮🇳 Indian Local Guide - Your Cultural Navigator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9933, #ffffff, #138808);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 5px solid #ff6b35;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .demo-btn {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+        
+        .demo-btn:hover {
+            background: #e55a2b;
+        }
+        
+        .demo-result {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+        
+        .example {
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 20px;
+            background: #f0f0f0;
+            margin: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇮🇳 Indian Local Guide</h1>
+            <p>Your AI-powered assistant for navigating India's rich cultural diversity</p>
+        </div>
+        
+        <div class="status" id="status">
+            <p>🔄 Checking server status...</p>
+        </div>
+        
+        <div class="features">
+            <!-- Slang Translator -->
+            <div class="feature-card">
+                <h3>🗣️ Slang Translator</h3>
+                <p>Translate Hindi and regional slang to English with cultural context</p>
+                <div class="example">
+                    <strong>Examples:</strong><br>
+                    • "jugaad" → innovative solution<br>
+                    • "timepass" → casual activity<br>
+                    • "fundoo" → awesome/cool
+                </div>
+                <button class="demo-btn" onclick="loadSlangDemo()">Try Slang Demo</button>
+                <div class="demo-result" id="slang-result"></div>
+            </div>
+            
+            <!-- Food Recommender -->
+            <div class="feature-card">
+                <h3>🍛 Street Food Guide</h3>
+                <p>Discover authentic local food with safety ratings and locations</p>
+                <div class="example">
+                    <strong>Popular Foods:</strong><br>
+                    • Vada Pav (Mumbai)<br>
+                    • Chole Bhature (Delhi)<br>
+                    • Masala Dosa (South India)
+                </div>
+                <button class="demo-btn" onclick="loadFoodDemo()">Try Food Demo</button>
+                <div class="demo-result" id="food-result"></div>
+            </div>
+            
+            <!-- Cultural Guide -->
+            <div class="feature-card">
+                <h3>🏛️ Cultural Navigator</h3>
+                <p>Learn about festivals, customs, and regional etiquette</p>
+                <div class="example">
+                    <strong>Learn About:</strong><br>
+                    • Festival celebrations<br>
+                    • Greeting customs<br>
+                    • Bargaining tips
+                </div>
+                <button class="demo-btn" onclick="loadCultureDemo()">Try Culture Demo</button>
+                <div class="demo-result" id="culture-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check server status
+        async function checkStatus() {
+            try {
+                const response = await fetch('/health');
+                const data = await response.json();
+                document.getElementById('status').innerHTML = `
+                    <p>✅ Server is running! Database: ${data.database.status}</p>
+                    <p>🚀 Your Indian Local Guide API is ready to help!</p>
+                `;
+            } catch (error) {
+                document.getElementById('status').innerHTML = `
+                    <p>❌ Server not responding. Please start the server first.</p>
+                `;
+            }
+        }
+
+        // Load slang demo
+        async function loadSlangDemo() {
+            const resultDiv = document.getElementById('slang-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>🔄 Loading slang translations...</p>';
+            
+            try {
+                const response = await fetch('/api/translate/demo');
+                const data = await response.json();
+                
+                let html = '<h4>🗣️ Hindi Slang Translations:</h4>';
+                data.data.forEach(item => {
+                    html += `
+                        <div style="margin: 10px 0; padding: 10px; background: #f0f8ff; border-radius: 5px;">
+                            <strong>${item.hindi}</strong> → ${item.english}<br>
+                            <small>Region: ${item.region} | Context: ${item.context}</small>
+                        </div>
+                    `;
+                });
+                
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = '<p>❌ Error loading slang demo</p>';
+            }
+        }
+
+        // Load food demo
+        async function loadFoodDemo() {
+            const resultDiv = document.getElementById('food-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>🔄 Loading food recommendations...</p>';
+            
+            try {
+                const response = await fetch('/api/food/demo');
+                const data = await response.json();
+                
+                let html = '<h4>🍛 Street Food Recommendations:</h4>';
+                data.data.forEach(item => {
+                    html += `
+                        <div style="margin: 10px 0; padding: 10px; background: #fff8f0; border-radius: 5px;">
+                            <strong>${item.name}</strong><br>
+                            📍 ${item.location} | 💰 ${item.priceRange}<br>
+                            ⭐ Safety: ${item.safetyRating}/5 | ${item.dietaryInfo}<br>
+                            <small>${item.description}</small>
+                        </div>
+                    `;
+                });
+                
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = '<p>❌ Error loading food demo</p>';
+            }
+        }
+
+        // Load culture demo
+        async function loadCultureDemo() {
+            const resultDiv = document.getElementById('culture-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>🔄 Loading cultural information...</p>';
+            
+            try {
+                const response = await fetch('/api/culture/demo');
+                const data = await response.json();
+                
+                let html = '<h4>🏛️ Cultural Information:</h4>';
+                data.data.forEach(item => {
+                    html += `
+                        <div style="margin: 10px 0; padding: 10px; background: #f0fff0; border-radius: 5px;">
+                            <strong>${item.topic}</strong><br>
+                            📍 Region: ${item.region}<br>
+                            <small>${item.description}</small>
+                        </div>
+                    `;
+                });
+                
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = '<p>❌ Error loading culture demo</p>';
+            }
+        }
+
+        // Check status on page load
+        checkStatus();
+    </script>
+</body>
+</html>

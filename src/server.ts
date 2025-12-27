@@ -4,6 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import path from 'path';
 import { appConfig } from './config';
 import { logger, requestLogger } from './services/logging';
 import { validateInput } from './validation/schemas';
@@ -17,6 +18,9 @@ const app = express();
 
 // Request logging middleware
 app.use(requestLogger);
+
+// Serve static files
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Security middleware
 app.use(helmet({
