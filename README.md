@@ -1,11 +1,46 @@
-# Indian Local Guide API
+<div align="center">
 
-An AI-powered assistant that helps people navigate and understand India's rich cultural diversity, local slang, street food, and regional nuances.
+# 🇮🇳 Indian Local Guide API
+
+### *Your AI-Powered Gateway to India's Cultural Diversity*
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)](https://expressjs.com/)
+[![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
+[![Kiro AI](https://img.shields.io/badge/Kiro_AI-6B4FBB?style=for-the-badge&logo=ai&logoColor=white)](https://kiro.dev/)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![GitHub Deployments](https://img.shields.io/github/deployments/Mukesh-219/indian-local-guide-api/production?style=flat-square&label=deployment)](https://github.com/Mukesh-219/indian-local-guide-api/deployments)
+[![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red.svg?style=flat-square)](https://github.com/Mukesh-219)
+
+**[📖 Read Blog Post](https://builder.aws.com/post/37RIe1yFh5RRW5nsdzy8YtaFuW7_p/building-an-ai-powered-indian-local-guide-api-with-kiro-and-amazon-bedrock)** • **[🌐 Live Demo](https://mukesh-219.github.io/indian-local-guide-api/)** • **[📚 API Docs](#-api-endpoints)**
+
+---
+
+*An intelligent REST API that helps travelers and locals navigate India's rich cultural diversity, decode regional slang, discover authentic street food, and understand local customs.*
+
+**Built for [AI For Bharat Hackathon](https://vision.hack2skill.com/event/ai-for-bharat) - Kiro Week 5 Challenge 🏆**
+
+</div>
+
+---
+
+## ✨ Features
+
+🗣️ **Slang Translator** - Decode Hindi slang and regional expressions across India  
+🍛 **Food Recommender** - Discover authentic local cuisine with safety ratings  
+🎭 **Cultural Guide** - Learn regional customs, festivals, and etiquette  
+🧠 **Kiro AI Powered** - Built with AI-native development using Kiro's product steering  
+⚡ **Fast & Scalable** - Production-ready with comprehensive error handling  
+🔒 **Secure** - Rate limiting, CORS, input validation, and security headers  
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation & Running
@@ -23,6 +58,20 @@ npm start
 ```
 
 The server will start on `http://localhost:3000`
+
+---
+
+## 🤖 Kiro AI Integration
+
+This project leverages **Kiro AI** for AI-native development:
+
+- **`.kiro/steering/product.md`** - Defines AI personality and Indian cultural context
+- **AI-First Architecture** - Kiro accelerates development with context-aware assistance
+- **Product Steering** - Clear AI guidance for authentic Indian recommendations
+
+The `.kiro` directory teaches Kiro about India's cultural nuances, enabling it to provide culturally appropriate suggestions throughout development.
+
+---
 
 ## 📡 API Endpoints
 
@@ -53,12 +102,12 @@ The server will start on `http://localhost:3000`
 - `GET /api/food/demo` - View sample food recommendations
 
 #### Get Recommendations
-- `POST /api/food/recommendations` - Get personalized food recommendations based on location and preferences
-- `GET /api/food/category/:category` - Get food by category (e.g., "street food", "south indian")
+- `POST /api/food/recommendations` - Get personalized food recommendations
+- `GET /api/food/category/:category` - Get food by category
 - `GET /api/food/hubs/:city` - Get popular food hubs in a city
 
 #### Search & Safety
-- `GET /api/food/search?q=query&lat=...&lng=...&city=...&state=...&country=...` - Search for food items
+- `GET /api/food/search?q=query` - Search for food items
 - `GET /api/food/safety/:vendorId` - Get safety rating for a vendor
 
 ### Cultural Information Endpoints
@@ -69,229 +118,109 @@ The server will start on `http://localhost:3000`
 #### Regional Information
 - `GET /api/culture/region/:region` - Get cultural information for a region
 - `GET /api/culture/festival/:festival` - Get information about a festival
-- `GET /api/culture/etiquette/:context` - Get etiquette rules for a context (e.g., "dining", "religious")
+- `GET /api/culture/etiquette/:context` - Get etiquette rules for a context
 
 #### Location-Based Tips
-- `GET /api/culture/bargaining?lat=...&lng=...&city=...&state=...&country=...` - Get bargaining tips for a location
-- `GET /api/culture/search?q=query&region=...` - Search cultural content
+- `GET /api/culture/bargaining` - Get bargaining tips for a location
+- `GET /api/culture/search?q=query` - Search cultural content
+
+---
 
 ## 🔧 API Usage Examples
 
-### Translation Examples
-
-#### 1. Get Demo Translations
+### Translate Hindi to English
 ```bash
-curl http://localhost:3000/api/translate/demo
-```
-
-#### 2. Translate Hindi to English
-```bash
-curl -X POST http://localhost:3000/api/translate/to-english \
-  -H "Content-Type: application/json" \
+curl -X POST http://localhost:3000/api/translate/to-english \\
+  -H "Content-Type: application/json" \\
   -d '{"text": "jugaad", "region": "delhi"}'
 ```
 
-#### 3. Translate English to Hindi
+### Get Food Recommendations
 ```bash
-curl -X POST http://localhost:3000/api/translate/to-hindi \
-  -H "Content-Type: application/json" \
-  -d '{"text": "awesome", "targetRegion": "mumbai"}'
-```
-
-#### 4. Search for Terms
-```bash
-curl "http://localhost:3000/api/translate/search?q=awesome"
-```
-
-#### 5. Get Regional Variations
-```bash
-curl http://localhost:3000/api/translate/variations/awesome
-```
-
-#### 6. Add New Slang Term
-```bash
-curl -X POST http://localhost:3000/api/translate/terms \
-  -H "Content-Type: application/json" \
-  -d '{
-    "term": "bindaas",
-    "language": "hindi",
-    "region": "mumbai",
-    "context": "casual",
-    "popularity": 80,
-    "translations": [{
-      "text": "awesome",
-      "targetLanguage": "english",
-      "context": "casual",
-      "confidence": 0.9
-    }],
-    "usageExamples": ["That movie was bindaas!"]
-  }'
-```
-
-### Food Recommendation Examples
-
-#### 7. Get Demo Food Recommendations
-```bash
-curl http://localhost:3000/api/food/demo
-```
-
-#### 8. Get Personalized Food Recommendations
-```bash
-curl -X POST http://localhost:3000/api/food/recommendations \
-  -H "Content-Type: application/json" \
+curl -X POST http://localhost:3000/api/food/recommendations \\
+  -H "Content-Type: application/json" \\
   -d '{
     "location": {
       "latitude": 19.0760,
       "longitude": 72.8777,
-      "city": "Mumbai",
-      "state": "Maharashtra",
-      "country": "India"
+      "city": "Mumbai"
     },
     "preferences": {
       "dietaryRestrictions": ["vegetarian"],
-      "spiceLevel": "medium",
-      "radius": 5
+      "spiceLevel": "medium"
     }
   }'
 ```
 
-#### 9. Get Food by Category
-```bash
-curl "http://localhost:3000/api/food/category/street%20food?lat=19.0760&lng=72.8777&city=Mumbai&state=Maharashtra&country=India"
-```
-
-#### 10. Get Popular Food Hubs
-```bash
-curl http://localhost:3000/api/food/hubs/Mumbai
-```
-
-#### 11. Search for Food
-```bash
-curl "http://localhost:3000/api/food/search?q=vada%20pav&lat=19.0760&lng=72.8777&city=Mumbai&state=Maharashtra&country=India"
-```
-
-### Cultural Information Examples
-
-#### 12. Get Demo Cultural Information
-```bash
-curl http://localhost:3000/api/culture/demo
-```
-
-#### 13. Get Regional Information
+### Get Cultural Information
 ```bash
 curl http://localhost:3000/api/culture/region/mumbai
 ```
 
-#### 14. Get Festival Information
-```bash
-curl http://localhost:3000/api/culture/festival/diwali
-```
-
-#### 15. Get Etiquette Rules
-```bash
-curl http://localhost:3000/api/culture/etiquette/dining
-```
-
-#### 16. Get Bargaining Tips
-```bash
-curl "http://localhost:3000/api/culture/bargaining?lat=28.6139&lng=77.2090&city=Delhi&state=Delhi&country=India"
-```
-
-#### 17. Search Cultural Content
-```bash
-curl "http://localhost:3000/api/culture/search?q=namaste&region=delhi"
-```
+---
 
 ## 🌟 Sample Data
 
 ### Translation Examples
-The API includes these popular Hindi slang terms:
 
 | Hindi | English | Region | Context | Example |
-|-------|---------|--------|---------|---------|
+|-------|---------|--------|---------|--------|
 | jugaad | innovative solution | Delhi | casual | "This is a jugaad solution" |
 | timepass | killing time | Mumbai | casual | "Just doing timepass" |
 | fundoo | awesome | Delhi | slang | "That movie was fundoo!" |
 | bindaas | awesome/carefree | Mumbai | slang | "Live bindaas, don't worry" |
-| bas yaar | enough man | Delhi | casual | "Bas yaar, let's go home" |
-| acha | okay/I see | Mumbai | casual | "Acha, I understand" |
 
-### Food Recommendations
-Popular street food items available:
+### Popular Street Food
 
-| Food | Description | Region | Price Range | Dietary |
-|------|-------------|--------|-------------|---------|
+| Food | Description | Region | Price | Dietary |
+|------|-------------|--------|-------|---------|
 | Vada Pav | Spiced potato fritter in bun | Mumbai | ₹15-25 | Vegetarian |
 | Chole Bhature | Spicy chickpea curry with bread | Delhi | ₹80-150 | Vegetarian |
 | Dosa | Crispy South Indian crepe | Bangalore | ₹40-80 | Vegan |
-| Pav Bhaji | Spiced vegetable mash with bread | Mumbai | ₹60-120 | Vegetarian |
-| Biryani | Fragrant rice with meat/vegetables | Hyderabad | ₹150-300 | Non-Veg/Veg |
 
-### Cultural Information
-Regional customs and etiquette:
+---
 
-| Topic | Region | Key Points |
-|-------|--------|------------|
-| Namaste Greeting | All India | Press palms together, bow head slightly |
-| Dining Etiquette | All India | Use right hand, don't waste food |
-| Local Train Rules | Mumbai | Let people exit first, stand left on escalators |
-| Bargaining Tips | Delhi | Start at 30-40% of quoted price |
-| Festival Celebrations | All India | Diwali, Holi, regional festivals |
+## 🏗️ Tech Stack
 
-## 🏗️ Current Status
+```text
+🔹 Backend       → Node.js + Express.js + TypeScript
+🔹 Database      → SQLite (production-ready)
+🔹 Validation    → Zod schemas
+🔹 Logging       → Winston
+🔹 Testing       → Property-based testing (fast-check)
+🔹 Security      → Helmet, CORS, Rate limiting
+🔹 AI Dev        → Kiro AI for context-aware development
+```
 
-### ✅ Completed Features
-- **Server Infrastructure**: Express.js with security, logging, rate limiting
-- **Translation API**: Full REST API for slang translation with demo data
-- **Food Recommendation API**: Location-based food suggestions with safety ratings
-- **Cultural Information API**: Regional customs, festivals, etiquette, and bargaining tips
-- **Database Integration**: SQLite with repositories and sample data seeding
-- **Input Validation**: Request validation with Zod schemas
-- **Error Handling**: Comprehensive error responses
-- **Health Monitoring**: Server and database status endpoints
+---
 
-### 🎯 API Endpoints Available
-- **Translation**: 6 endpoints (demo, translate, search, variations, add terms)
-- **Food**: 5 endpoints (demo, recommendations, category, hubs, search, safety)
-- **Culture**: 5 endpoints (demo, regional info, festivals, etiquette, bargaining, search)
-- **System**: 3 endpoints (health, API info, database status)
+## 📂 Project Structure
 
-### 🔧 Technical Features
-- TypeScript throughout for type safety
-- Property-based testing with fast-check
-- Comprehensive logging with Winston
-- Database migrations and seeding
-- CORS and security headers
-- Rate limiting and input sanitization
-
-## 🛠️ Development
-
-### Scripts
-- `npm run dev` - Development server with auto-reload
-- `npm run build` - Build TypeScript to JavaScript
-- `npm start` - Run production server
-- `npm test` - Run test suite
-- `npm run lint` - Check code style
-
-### Project Structure
 ```
 src/
-├── routes/          # API route handlers
-├── services/        # Business logic services
-├── database/        # Database models and repositories
-├── validation/      # Input validation schemas
-├── config/          # Configuration management
-└── types/           # TypeScript type definitions
+├── .kiro/              # Kiro AI context and product steering
+│   └── steering/
+│       └── product.md  # Indian cultural context for AI
+├── routes/             # API route handlers
+├── services/           # Business logic services
+├── database/           # Database models and repositories
+├── validation/         # Input validation schemas
+├── config/             # Configuration management
+└── types/              # TypeScript type definitions
 ```
 
-## 🌍 Regional Focus
+---
+
+## 🌍 Regional Coverage
 
 The API covers slang and cultural information from:
 
 - **North India**: Delhi NCR, Punjab, Rajasthan
-- **South India**: Bangalore, Chennai, Kerala  
+- **South India**: Bangalore, Chennai, Kerala
 - **West India**: Mumbai, Gujarat, Goa
 - **East India**: Kolkata, Northeast states
+
+---
 
 ## 📝 Response Format
 
@@ -314,19 +243,81 @@ Error responses:
 }
 ```
 
-## 🚀 Ready for Hosting!
+---
 
-The app is **production-ready** with:
-- ✅ Security headers (Helmet)
-- ✅ CORS configuration
-- ✅ Rate limiting
-- ✅ Request logging
-- ✅ Error handling
-- ✅ Health monitoring
-- ✅ Graceful shutdown
+## 🚀 Deployment
 
-Deploy to any Node.js hosting platform (Heroku, Railway, DigitalOcean, etc.)
+The app is production-ready with:
+
+✅ Security headers (Helmet)  
+✅ CORS configuration  
+✅ Rate limiting  
+✅ Request logging  
+✅ Error handling  
+✅ Health monitoring  
+✅ Graceful shutdown  
+
+Deploy to any Node.js hosting platform:
+- ✨ Vercel
+- ✨ Railway
+- ✨ Heroku
+- ✨ DigitalOcean
+- ✨ AWS Elastic Beanstalk
 
 ---
 
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+<div align="center">
+
+### **Mukesh Kumar Bauri**
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mukesh-219)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mukesh-kumar-bauri)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mukeshbauri419@gmail.com)
+
+*Full-Stack Developer | AI Enthusiast | Building AI-native applications*
+
+**Project Links:**
+- 📖 [Technical Blog Post on AWS Builder Center](https://builder.aws.com/post/37RIe1yFh5RRW5nsdzy8YtaFuW7_p/building-an-ai-powered-indian-local-guide-api-with-kiro-and-amazon-bedrock)
+- 🏆 [AI For Bharat Hackathon](https://vision.hack2skill.com/event/ai-for-bharat)
+- 🌐 [Live Demo](https://mukesh-219.github.io/indian-local-guide-api/)
+
+</div>
+
+---
+
+## 🙏 Acknowledgments
+
+- **[AI For Bharat](https://vision.hack2skill.com/event/ai-for-bharat)** - For organizing this amazing hackathon
+- **[Kiro AI](https://kiro.dev/)** - For revolutionizing AI-native development
+- **[AWS](https://aws.amazon.com/)** - For providing cloud infrastructure insights
+- **India's Diverse Culture** - The inspiration behind this project
+
+---
+
+<div align="center">
+
 **Made with ❤️ for exploring India's rich cultural diversity**
+
+*Star ⭐ this repository if you found it helpful!*
+
+</div>
